@@ -54,7 +54,6 @@ declare class Sinal<K extends string, T = FieldValues> {
     private enableLogs;
     private autoClearValue;
     private autoClearEvents;
-    private initial;
     private subscribers;
     constructor(params?: Params);
     subscribe<A extends string = K>(event: A, subscriber: Subscriber<T, A>, options?: SubscribeOptions): Unsubscribe;
