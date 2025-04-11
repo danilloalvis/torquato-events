@@ -338,10 +338,3 @@ export default class Sinal<K extends string, T = FieldValues> {
         }
     }
 }
-
-
-
-
-async function a(a: string, b: number) {
-
-}
