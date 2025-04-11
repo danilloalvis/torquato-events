@@ -1,6 +1,6 @@
 {
   "name": "torquato-event",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple and high-performance event management library",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "publish": "tsup && npm publish --access public",
     "test": "jest"
   },
   "repository": {
