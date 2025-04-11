@@ -1,6 +1,6 @@
 {
   "name": "torquato-event",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A simple and high-performance event management library",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

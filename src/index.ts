@@ -179,7 +179,7 @@ export default class Sinal<K extends string, T = FieldValues> {
     //     }
     // }
 
-    public getValue<A extends string = K>(event: A): PathValue<T, A> | undefined {
+    public getValue<A extends string = K>(event: A): PathValue<T, A> | any | undefined {
         return this.subscribers.value && objectPath.get(this.subscribers.value, event)
     }
 
@@ -188,14 +188,14 @@ export default class Sinal<K extends string, T = FieldValues> {
         return subscribers
     }
 
-    public register<A extends string = K>(event: A, payload?: PathValue<T, A>) {
+    public register<A extends string = K>(event: A, payload?: PathValue<T, A> | {}) {
         objectPath.set(this.subscribers, `listeners.${event}`, {})
         if (this.storage) {
             objectPath.set(this.subscribers, `value.${event}`, payload)
         }
     }
 
-    public async dispatch<A extends string = K>(event: A, payload?: PathValue<T, A>) {
+    public async dispatch<A extends string = K>(event: A, payload?: PathValue<T, A> | {}) {
         const subscriber = this.subscribers.listeners[event]
 
         if (subscriber) {
@@ -252,7 +252,7 @@ export default class Sinal<K extends string, T = FieldValues> {
             }
 
             this.dispatchOnChange(event, payload)
-            
+
             if (this.enableLogs) {
                 console.log(`dispatch (${event}):`, payload)
             }
@@ -260,7 +260,7 @@ export default class Sinal<K extends string, T = FieldValues> {
     }
 
 
-    public async dispatchOnChange<A extends string = K>(event: A, payload?: PathValue<T, A>) {
+    public async dispatchOnChange<A extends string = K>(event: A, payload?: PathValue<T, A> | {}) {
 
         if (this.subscribers.onChange) {
 
