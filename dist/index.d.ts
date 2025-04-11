@@ -58,15 +58,15 @@ declare class Sinal<K extends string, T = FieldValues> {
     constructor(params?: Params);
     subscribe<A extends string = K>(event: A, subscriber: Subscriber<T, A>, options?: SubscribeOptions): Unsubscribe;
     onChange(subscriber: SubscriberGlobal<K>): Unsubscribe;
-    getValue<A extends string = K>(event: A): PathValue<T, A> | undefined;
+    getValue<A extends string = K>(event: A): PathValue<T, A> | any | undefined;
     getSubscribers(): {
         value?: Partial<T> | undefined;
         listeners: Listener<T, K>;
         onChange: Listener<T, K>;
     };
-    register<A extends string = K>(event: A, payload?: PathValue<T, A>): void;
-    dispatch<A extends string = K>(event: A, payload?: PathValue<T, A>): Promise<void>;
-    dispatchOnChange<A extends string = K>(event: A, payload?: PathValue<T, A>): Promise<void>;
+    register<A extends string = K>(event: A, payload?: PathValue<T, A> | {}): void;
+    dispatch<A extends string = K>(event: A, payload?: PathValue<T, A> | {}): Promise<void>;
+    dispatchOnChange<A extends string = K>(event: A, payload?: PathValue<T, A> | {}): Promise<void>;
     remove<A extends string = K>(event: A, keepValue?: boolean): void;
     clear(): void;
     private unsubscribe;
