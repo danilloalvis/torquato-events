@@ -7,6 +7,18 @@ var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 var __objRest = (source, exclude) => {
   var target = {};
   for (var prop in source)
@@ -75,14 +87,15 @@ function generateHash() {
 
 // src/index.ts
 var import_object_path = __toESM(require("object-path"));
+var INITIAL = {
+  value: void 0,
+  listeners: {},
+  onChange: {},
+  debouncers: {}
+};
 var Sinal = class {
   constructor(params) {
-    this.initial = {
-      value: void 0,
-      listeners: {},
-      onChange: {},
-      debouncers: {}
-    };
+    this.initial = __spreadValues({}, INITIAL);
     this.subscribers = this.initial;
     this.throwOnFailure = !!(params == null ? void 0 : params.throwOnFailure);
     this.storage = !!(params == null ? void 0 : params.storage);
@@ -268,7 +281,7 @@ var Sinal = class {
     }
   }
   clear() {
-    this.subscribers = this.initial;
+    this.subscribers = __spreadValues({}, INITIAL);
   }
   unsubscribe(event, hash) {
     return () => {
