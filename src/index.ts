@@ -46,6 +46,13 @@ type SubscribeOptions = {
     runOnCreate?: boolean
 }
 
+const INITIAL = {
+    value: undefined,
+    listeners: {},
+    onChange: {},
+    debouncers: {}
+}
+
 export default class Sinal<K extends string, T = FieldValues> {
     private Events!: K
 
@@ -61,12 +68,7 @@ export default class Sinal<K extends string, T = FieldValues> {
 
     private autoClearEvents: boolean
 
-    private initial: Subscribers<T, K> = {
-        value: undefined,
-        listeners: {},
-        onChange: {},
-        debouncers: {}
-    }
+    private initial: Subscribers<T, K> = {...INITIAL}
 
     private subscribers: Subscribers<T, K>;
 
@@ -293,7 +295,7 @@ export default class Sinal<K extends string, T = FieldValues> {
     }
 
     public clear() {
-        this.subscribers = this.initial
+        this.subscribers = {...INITIAL}
     }
 
 
