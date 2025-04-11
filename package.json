@@ -1,5 +1,5 @@
 {
-  "name": "torquato-events",
+  "name": "torquato-event",
   "version": "0.0.1",
   "description": "A simple and high-performance event management library",
   "main": "./dist/index.js",
